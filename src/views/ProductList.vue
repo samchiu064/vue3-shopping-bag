@@ -16,7 +16,7 @@ onMounted(() => {
 <template>
   <div class="bg-neutral-100">
     <TheHeader />
-    <main class="container flex flex-wrap gap-3 p-6">
+    <main class="flex flex-wrap gap-3 p-6">
       <ProductCard v-for="product in products" :key="product.id" :product="product" />
     </main>
   </div>
