@@ -1,11 +1,11 @@
 <script setup>
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { toRef } from 'vue'
 
 const store = useStore()
 const route = useRoute()
-const cartQuantity = computed(() => store.state.cart.length)
+const cartQuantity = toRef(store.state.cart, 'length')
 </script>
 
 <template>

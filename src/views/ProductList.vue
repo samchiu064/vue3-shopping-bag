@@ -1,12 +1,15 @@
 <script setup>
 import ProductCard from '@/components/ProductCard.vue'
 import TheHeader from '@/components/TheHeader.vue'
-import { computed, onMounted } from 'vue'
-import { useStore } from 'vuex'
+import axios from 'axios'
+import { onMounted, ref } from 'vue'
 
-const store = useStore()
-const products = computed(() => store.state.products)
-const fetchProducts = () => store.dispatch('fetchProducts')
+const products = ref([])
+
+const fetchProducts = async () => {
+  const res = await axios.get('https://fakestoreapi.com/products?limit=10')
+  products.value = res.data
+}
 
 onMounted(() => {
   fetchProducts()

@@ -1,10 +1,8 @@
 import { createStore } from 'vuex'
-import axios from 'axios'
 
 const store = createStore({
   state() {
     return {
-      products: [],
       cart: []
     }
   },
@@ -18,9 +16,6 @@ const store = createStore({
     }
   },
   mutations: {
-    setProducts(state, products) {
-      state.products = products
-    },
     addToCart(state, product) {
       state.cart.push({ quantity: 1, ...product })
     },
@@ -30,23 +25,13 @@ const store = createStore({
         state.cart.splice(index, 1)
       }
     },
-    increaseQuantity(state, product) {
-      product.quantity++
+    increaseQuantity(state, cartItem) {
+      cartItem.quantity++
     },
-    decreaseQuantity(state, product) {
-      if (product.quantity > 1) {
-        product.quantity--
+    decreaseQuantity(state, cartItem) {
+      if (cartItem.quantity > 1) {
+        cartItem.quantity--
       }
-    },
-    clearCart(state) {
-      state.cart = []
-    }
-  },
-  actions: {
-    async fetchProducts({ commit }) {
-      const res = await axios.get('https://fakestoreapi.com/products?limit=10')
-      const products = res.data
-      commit('setProducts', products)
     }
   }
 })
