@@ -11,9 +11,9 @@ const props = defineProps({
 })
 const { item } = toRefs(props)
 
-const increaseQuantity = () => store.commit('increaseQuantity', item.value)
-const decreaseQuantity = () => store.commit('decreaseQuantity', item.value)
-const removeFromCart = () => store.commit('removeFromCart', item.value)
+const increaseQuantity = () => store.commit('increaseQuantity', item.value.id)
+const decreaseQuantity = () => store.commit('decreaseQuantity', item.value.id)
+const removeFromCart = () => store.commit('removeFromCart', item.value.id)
 </script>
 
 <template>

@@ -19,17 +19,21 @@ const store = createStore({
     addToCart(state, product) {
       state.cart.push({ quantity: 1, ...product })
     },
-    removeFromCart(state, product) {
-      const index = state.cart.findIndex((item) => item.id === product.id)
+    removeFromCart(state, productId) {
+      const index = state.cart.findIndex((item) => item.id === productId)
       if (index !== -1) {
         state.cart.splice(index, 1)
       }
     },
-    increaseQuantity(state, cartItem) {
-      cartItem.quantity++
+    increaseQuantity(state, productId) {
+      const cartItem = state.cart.find((item) => item.id === productId)
+      if (cartItem) {
+        cartItem.quantity++
+      }
     },
-    decreaseQuantity(state, cartItem) {
-      if (cartItem.quantity > 1) {
+    decreaseQuantity(state, productId) {
+      const cartItem = state.cart.find((item) => item.id === productId)
+      if (cartItem && cartItem.quantity > 1) {
         cartItem.quantity--
       }
     }
