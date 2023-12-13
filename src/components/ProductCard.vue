@@ -12,7 +12,8 @@ const props = defineProps({
 const { product } = toRefs(props)
 
 const addToCart = () => store.commit('addToCart', product.value)
-const removeFromCart = () => store.commit('removeFromCart', product.value)
+const removeFromCart = () => store.commit('removeFromCart', product.value.id)
+
 const isInCart = computed(() => {
   return store.state.cart.some((item) => item.id === product.value.id)
 })
