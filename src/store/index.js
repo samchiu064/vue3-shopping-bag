@@ -10,9 +10,6 @@ const store = createStore({
     cartTotal(state) {
       const total = state.cart.reduce((acc, product) => acc + product.price * product.quantity, 0)
       return Math.floor(total * 100) / 100
-    },
-    cartQuantity(state) {
-      return state.cart.length
     }
   },
   mutations: {
